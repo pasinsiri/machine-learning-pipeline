@@ -165,6 +165,9 @@ cython_debug/
 # Credentials
 *cred*
 
+# Data (there's no need to track these files)
+genres_mod.parquet
+
 # Staging environment files
 test/*
 test*.py
