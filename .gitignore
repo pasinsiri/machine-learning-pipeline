@@ -165,6 +165,11 @@ cython_debug/
 
 # Staging environment files
 test/*
+test*.py
+test*.ipynb
 
 # Weights and Biases log
 wandb/*
+
+# mlflow
+mlruns
