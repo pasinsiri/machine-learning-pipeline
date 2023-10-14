@@ -23,7 +23,7 @@ def split_data(df):
     return splits
 
 def main(args):
-    run = wandb.init(project="sample-ml-pipeline", job_type="split_data")
+    run = wandb.init(project="sample_ml_pipeline", job_type="split_data")
     
     # * download artifact
     logger.info("Downloading and reading artifact")
