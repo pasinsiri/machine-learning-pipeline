@@ -162,3 +162,9 @@ cython_debug/
 
 # Credentials
 *cred*
+
+# Staging environment files
+test/*
+
+# Weights and Biases log
+wandb/*
