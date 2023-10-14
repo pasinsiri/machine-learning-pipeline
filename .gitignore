@@ -172,6 +172,7 @@ genres_mod.parquet
 test/*
 test*.py
 test*.ipynb
+template*.yaml
 
 # Weights and Biases log
 wandb/*
