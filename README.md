@@ -9,4 +9,4 @@ The sample data that was used is `genres_mod.parquet` which is stored in `data_p
 All codes are stored in the `data_preprocessing` folder. The respective `mlflow` script is `data_preprocessing.sh`.
 In `./data_preprocessing/clean_data.py` there are two simple data preprocessing steps:<br>
     1. Drop duplicates<br>
-    2. Fill values, i.e. fill null `song_name` with an empty string, and create a new column called `text_feature`.<br>
+    2. Fill values, i.e. fill null `song_name` with an empty string, and create a new column called `text_feature`<br>
