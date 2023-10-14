@@ -172,6 +172,9 @@ test*.ipynb
 
 # Weights and Biases log
 wandb/*
+*/wandb/*
+artifacts/*
+*/artifacts/*
 
 # mlflow
 mlruns
