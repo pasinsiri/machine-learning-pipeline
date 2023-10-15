@@ -176,16 +176,12 @@ test*.ipynb
 template*.yaml
 
 # Weights and Biases log
-wandb/*
-*/wandb/*
-artifacts/*
-*/artifacts/*
-*/outputs/*
+wandb
+artifacts
+outputs
 
 # model tuning logs
-*/multirun
-*/*/artifacts
-*/*/wandb
+multirun
 
 # mlflow
 mlruns
