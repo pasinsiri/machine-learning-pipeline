@@ -167,6 +167,7 @@ cython_debug/
 
 # Data (there's no need to track these files)
 genres_mod.parquet
+reference.txt
 
 # Staging environment files
 test/*
@@ -179,6 +180,12 @@ wandb/*
 */wandb/*
 artifacts/*
 */artifacts/*
+*/outputs/*
+
+# model tuning logs
+*/multirun
+*/*/artifacts
+*/*/wandb
 
 # mlflow
 mlruns
