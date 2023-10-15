@@ -27,7 +27,7 @@ entry_points:
         type: str
         default: null
     command: >-
-      python run.py --train_data {train_data} \
+      python tuning.py --train_data {train_data} \
                     --model_config {model_config} \
                     --export_artifact {export_artifact} \
                     --random_seed {random_seed} \
