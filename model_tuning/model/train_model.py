@@ -31,6 +31,11 @@ def main(args):
     train_data_path = run.use_artifact(args.train_data).file()
     df = pd.read_csv(train_data_path, low_memory=False)
 
+    # ? cast object to string
+    for c in df.columns:
+        if df[c].dtype == 'object':
+            df[c] = df[c].astype('str')
+
     # Extract the target from the features
     logger.info("Extracting target from dataframe")
     X = df.copy()
