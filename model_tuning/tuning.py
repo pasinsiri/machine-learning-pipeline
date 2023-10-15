@@ -13,7 +13,7 @@ from mlflow.models import infer_signature
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics import roc_auc_score, plot_confusion_matrix
+from sklearn.metrics import roc_auc_score, ConfusionMatrixDisplay
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OrdinalEncoder, StandardScaler, FunctionTransformer
 import matplotlib.pyplot as plt
@@ -25,9 +25,9 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
 
 
-def main(args):
+def go(args):
 
-    run = wandb.init(job_type="train_model")
+    run = wandb.init(job_type="train")
 
     logger.info("Downloading and reading train artifact")
     train_data_path = run.use_artifact(args.train_data).file()
@@ -72,13 +72,13 @@ def main(args):
     fig_feat_imp = plot_feature_importance(pipe)
 
     fig_cm, sub_cm = plt.subplots(figsize=(10, 10))
-    plot_confusion_matrix(
+    ConfusionMatrixDisplay.from_estimator(
         pipe,
         X_val[used_columns],
         y_val,
         ax=sub_cm,
-        normalize="true",
-        values_format=".1f",
+        normalize=None,
+        values_format=".2f",
         xticks_rotation=90,
     )
     fig_cm.tight_layout()
@@ -259,4 +259,5 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
-    main(args)
+
+    go(args)
