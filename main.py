@@ -37,41 +37,41 @@ def main(config: DictConfig):
     #         },
     #     )
 
-    # if "data_preprocessing" in steps_to_execute:
-    #     _ = mlflow.run(
-    #         os.path.join(root_path, "data_preprocessing"),
-    #         "main",
-    #         parameters={
-    #             "input_artifact": "genres_mod.parquet:latest", # ! this was changed from raw_data.parquet:latest since we still have issue with the download step (the one highlighed above)
-    #             "artifact_name": "preprocessed_data.csv",
-    #             "artifact_type": "cleaned_data",
-    #             "artifact_description": "Data with preprocessing applied"
-    #         },
-    #     )
+    if "data_preprocessing" in steps_to_execute:
+        _ = mlflow.run(
+            os.path.join(root_path, "data_preprocessing"),
+            "main",
+            parameters={
+                "input_artifact": "genres_mod.parquet:latest", # ! this was changed from raw_data.parquet:latest since we still have issue with the download step (the one highlighed above)
+                "artifact_name": "preprocessed_data.csv",
+                "artifact_type": "cleaned_data",
+                "artifact_description": "Data with preprocessing applied"
+            },
+        )
 
-    # if "data_validation" in steps_to_execute:
-    #     _ = mlflow.run(
-    #         os.path.join(root_path, "data_validation"),
-    #         "main",
-    #         parameters={
-    #             "reference_artifact": config["data"]["reference_dataset"],
-    #             "sample_artifact": "preprocessed_data.csv:latest",
-    #             "ks_alpha": config["data"]["ks_alpha"]
-    #         },
-    #     )
+    if "data_validation" in steps_to_execute:
+        _ = mlflow.run(
+            os.path.join(root_path, "data_validation"),
+            "main",
+            parameters={
+                "reference_artifact": config["data"]["reference_dataset"],
+                "sample_artifact": "preprocessed_data.csv:latest",
+                "ks_alpha": config["data"]["ks_alpha"]
+            },
+        )
 
-    # if "data_segregate" in steps_to_execute:
-    #     _ = mlflow.run(
-    #         os.path.join(root_path, "data_segregation"),
-    #         "main",
-    #         parameters={
-    #             "input_artifact": "preprocessed_data.csv:latest",
-    #             "artifact_root": "data",
-    #             "artifact_type": "cleaned_data",
-    #             "test_size": config["data"]["test_size"],
-    #             "stratify": config["data"]["stratify"]
-    #         },
-    #     )
+    if "data_segregate" in steps_to_execute:
+        _ = mlflow.run(
+            os.path.join(root_path, "data_segregation"),
+            "main",
+            parameters={
+                "input_artifact": "preprocessed_data.csv:latest",
+                "artifact_root": "data",
+                "artifact_type": "cleaned_data",
+                "test_size": config["data"]["test_size"],
+                "stratify": config["data"]["stratify"]
+            },
+        )
 
     if "model_tuning" in steps_to_execute:
         # Serialize decision tree configuration
@@ -93,16 +93,16 @@ def main(config: DictConfig):
             },
         )
 
-    # if "evaluate" in steps_to_execute:
+    if "evaluate" in steps_to_execute:
 
-    #     _ = mlflow.run(
-    #         os.path.join(root_path, "evaluate"),
-    #         "main",
-    #         parameters={
-    #             "model_export": f"{config['random_forest_pipeline']['export_artifact']}:latest",
-    #             "test_data": "data_test.csv:latest"
-    #         },
-    #     )
+        _ = mlflow.run(
+            os.path.join(root_path, "model_evaluation"),
+            "main",
+            parameters={
+                "model_export": f"{config['random_forest_pipeline']['export_artifact']}:latest",
+                "test_data": "data_test.csv:latest"
+            },
+        )
 
 
 if __name__ == "__main__":
